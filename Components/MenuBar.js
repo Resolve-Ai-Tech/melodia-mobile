@@ -43,7 +43,11 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     borderRadius: 10,
     paddingHorizontal: 15,
-    elevation: 3,
+    elevation: 10, // Aumentado para uma sombra mais forte em Android
+    shadowColor: '#000', // Cor da sombra
+    shadowOffset: { width: 0, height: 6 }, // Deslocamento da sombra
+    shadowOpacity: 0.3, // Opacidade da sombra
+    shadowRadius: 8, // Raio da sombra
     zIndex: 1,
     paddingTop: 20,
   },

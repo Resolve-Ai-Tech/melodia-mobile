@@ -5,6 +5,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 const BottomMenuBar = ({ setActiveTab }) => {
   return (
     <View style={styles.bottomMenuBar}>
+      {/* botão de configs */}
       <TouchableOpacity
         style={styles.bottomIconContainer}
         onPress={() => setActiveTab('settings')}
@@ -12,6 +13,7 @@ const BottomMenuBar = ({ setActiveTab }) => {
         <Icon name="cogs" size={24} color="#000" />
       </TouchableOpacity>
 
+      {/* botão de musicas */}
       <TouchableOpacity
         style={styles.bottomIconContainer}
         onPress={() => setActiveTab('music')}
@@ -19,6 +21,7 @@ const BottomMenuBar = ({ setActiveTab }) => {
         <Icon name="music" size={24} color="#000" />
       </TouchableOpacity>
 
+{/* botão da logo  */}
       <TouchableOpacity
         style={styles.bottomIconContainer}
         onPress={() => setActiveTab('home')}
@@ -29,6 +32,7 @@ const BottomMenuBar = ({ setActiveTab }) => {
         />
       </TouchableOpacity>
 
+{/* botão de favoritos */}
       <TouchableOpacity
         style={styles.bottomIconContainer}
         onPress={() => setActiveTab('favorites')}
@@ -36,9 +40,10 @@ const BottomMenuBar = ({ setActiveTab }) => {
         <Icon name="star" size={24} color="#000" />
       </TouchableOpacity>
 
+      {/* botão de microfone  */}
       <TouchableOpacity
         style={styles.bottomIconContainer}
-        onPress={() => setActiveTab('home')}
+        onPress={() => {}}
       >
         <Icon name="microphone" size={24} color="#000" />
       </TouchableOpacity>
@@ -46,7 +51,7 @@ const BottomMenuBar = ({ setActiveTab }) => {
   );
 };
 
-// Estilos para a barra do menu inferior
+
 const styles = StyleSheet.create({
   bottomMenuBar: {
     position: 'absolute',
@@ -61,11 +66,17 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 20,
     borderTopWidth: 1,
     borderTopColor: '#ddd',
-    elevation: 3,
+    elevation: 10, 
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 6 }, 
+    shadowOpacity: 0.3, 
+    shadowRadius: 8,
   },
   bottomIconContainer: {
     justifyContent: 'center',
     alignItems: 'center',
+    height: 60, 
+    width: 79,  
   },
   bottomLogo: {
     width: 100,
@@ -75,4 +86,3 @@ const styles = StyleSheet.create({
 });
 
 export default BottomMenuBar;
-   
