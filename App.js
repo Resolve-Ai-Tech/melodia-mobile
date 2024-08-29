@@ -1,20 +1,14 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, View, Image, TouchableOpacity, Animated, Text } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
-import { LinearGradient } from 'expo-linear-gradient';
-
-// Importe os componentes de tela
-import SettingsScreen from './SettingsScreen';
-import FavoritesScreen from './FavoritesScreen';
-import MusicScreen from './MusicScreen';
-
-// Crie um componente animado para o LinearGradient
-const AnimatedLinearGradient = Animated.createAnimatedComponent(LinearGradient);
+import { View, StyleSheet, Animated } from 'react-native';
+import AnimatedLinearGradient from './Components/AnimatedLinearGradient';
+import MenuBar from './Components/MenuBar';
+import BottomMenuBar from './Components/BottomMenuBar';
+import Content from './Components/Content'; // Importe o componente Content
 
 export default function App() {
   // Estado para controlar a aba ativa
-  const [activeTab, setActiveTab] = useState('home');
+  const [activeTab, setActiveTab] = useState('home'); // Configurado para 'home' por padrão
 
   // Referências para animações
   const gradientAnim = useRef(new Animated.Value(0)).current; // Animação do gradiente
@@ -60,117 +54,22 @@ export default function App() {
     animateTabChange();
   }, [activeTab]);
 
-  // Interpolação das cores do gradiente com base na animação
-  const interpolateColor1 = gradientAnim.interpolate({
-    inputRange: [0, 1],
-    outputRange: ['#E6E6FA', '#8e44ad'], // Cores do gradiente
-  });
-
-  const interpolateColor2 = gradientAnim.interpolate({
-    inputRange: [0, 1],
-    outputRange: ['#8e44ad', '#6a0dad'], // Cores do gradiente
-  });
-
-  // Função para renderizar o conteúdo com base na aba ativa
-  const renderContent = () => {
-    switch (activeTab) {
-      case 'favorites':
-        return <FavoritesScreen />;
-      case 'music':
-        return <MusicScreen />;
-      case 'settings':
-        return <SettingsScreen />;
-      case 'home':
-      default:
-        return <View style={styles.content}><Text>Home Content</Text></View>;
-    }
-  };
-
   return (
     <View style={styles.container}>
       <AnimatedLinearGradient
-        colors={[interpolateColor1, interpolateColor2]} // Cores do gradiente animado
+        gradientAnim={gradientAnim}
         style={styles.gradient}
       >
         {/* Barra do Menu Superior */}
-        <View style={styles.menuBar}>
-          <View style={styles.leftContainer}>
-            {/* Botão para a aba inicial (home) */}
-            <TouchableOpacity onPress={() => setActiveTab('home')}>
-              <Image source={require('./MELODIA/LOGO-MELODIA-14.png')} style={styles.logo} />
-            </TouchableOpacity>
-          </View>
-          <View style={styles.rightContainer}>
-            {/* Ícone de Notificação */}
-            <TouchableOpacity style={styles.iconContainer}>
-              <Icon name="bell" size={24} color="#000" />
-            </TouchableOpacity>
-
-            {/* Ícone de Perfil */}
-            <TouchableOpacity style={styles.iconContainer}>
-              <Image
-                source={require('./MELODIA/AvatarImg.jpg')}
-                style={styles.profilePic}
-              />
-            </TouchableOpacity>
-
-            {/* Menu Hambúrguer */}
-            <TouchableOpacity style={styles.iconContainer}>
-              <Icon name="bars" size={24} color="#000" />
-            </TouchableOpacity>
-          </View>
-        </View>
+        <MenuBar setActiveTab={setActiveTab} />
 
         {/* Conteúdo da Tela com animação de desvanecimento */}
         <Animated.View style={[styles.content, { opacity: fadeAnim }]}>
-          {renderContent()}
+          <Content activeTab={activeTab} />
         </Animated.View>
 
         {/* Barra do Menu Inferior */}
-        <View style={styles.bottomMenuBar}>
-          {/* Botão para a aba de Configurações */}
-          <TouchableOpacity
-            style={styles.bottomIconContainer}
-            onPress={() => setActiveTab('settings')}
-          >
-            <Icon name="cogs" size={24} color="#000" />
-          </TouchableOpacity>
-
-          {/* Botão para a aba de Música */}
-          <TouchableOpacity
-            style={styles.bottomIconContainer}
-            onPress={() => setActiveTab('music')}
-          >
-            <Icon name="music" size={24} color="#000" />
-          </TouchableOpacity>
-
-          {/* Logo no centro da barra inferior */}
-          <TouchableOpacity
-            style={styles.bottomIconContainer}
-            onPress={() => setActiveTab('home')}
-          >
-            <Image
-              source={require('./MELODIA/LOGO-MELODIA-17.png')}
-              style={styles.bottomLogo}
-            />
-          </TouchableOpacity>
-
-          {/* Botão para a aba de Favoritos */}
-          <TouchableOpacity
-            style={styles.bottomIconContainer}
-            onPress={() => setActiveTab('favorites')}
-          >
-            <Icon name="star" size={24} color="#000" />
-          </TouchableOpacity>
-
-          {/* Botão para a aba de Microfone */}
-          <TouchableOpacity
-            style={styles.bottomIconContainer}
-            onPress={() => setActiveTab('home')}
-          >
-            <Icon name="microphone" size={24} color="#000" />
-          </TouchableOpacity>
-        </View>
+        <BottomMenuBar setActiveTab={setActiveTab} />
       </AnimatedLinearGradient>
       <StatusBar style="auto" />
     </View>
@@ -185,77 +84,11 @@ const styles = StyleSheet.create({
   gradient: {
     flex: 1, // Ocupa toda a tela
   },
-  menuBar: {
-    position: 'absolute',
-    top: 0,
-    height: 90,
-    width: '100%',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    backgroundColor: '#fff',
-    borderRadius: 10,
-    paddingHorizontal: 15,
-    elevation: 3,
-    zIndex: 1,
-    paddingTop: 20,
-  },
-  leftContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  rightContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  logo: {
-    width: 150,
-    height: 150,
-    resizeMode: 'contain',
-  },
-  profilePic: {
-    width: 30,
-    height: 30,
-    borderRadius: 15,
-    borderWidth: 2,
-    borderColor: '#6a0dad',
-    overflow: 'hidden',
-    marginHorizontal: 10,
-    resizeMode: 'cover',
-  },
-  iconContainer: {
-    marginHorizontal: 10,
-    justifyContent: 'center',
-  },
   content: {
     flex: 1,
     paddingTop: 90,
     justifyContent: 'center',
     alignItems: 'center',
     width: '100%',
-  },
-  bottomMenuBar: {
-    position: 'absolute',
-    bottom: 0,
-    height: 60,
-    width: '100%',
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    alignItems: 'center',
-    backgroundColor: '#fff',
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
-    borderTopWidth: 1,
-    borderTopColor: '#ddd',
-    elevation: 3,
-  },
-  bottomIconContainer: {
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  bottomLogo: {
-    width: 100,
-    height: 40,
-    resizeMode: 'contain',
   },
 });
