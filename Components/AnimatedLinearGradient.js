@@ -7,8 +7,8 @@ const AnimatedLinearGradient = ({ gradientAnim, style, children }) => {
   const interpolatedColors = gradientAnim.interpolate({
     inputRange: [0, 1],
     outputRange: [
-      'rgba(106, 13, 173, 1)', // roxo escuro
-      'rgba(255, 95, 109, 1)', // rosa claro
+      'rgba(106, 13, 173, 1)', // roxinho escuro
+      'rgba(255, 95, 109, 1)', // rosinha claro
     ],
   });
 

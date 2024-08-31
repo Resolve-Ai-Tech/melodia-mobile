@@ -30,7 +30,6 @@ const MenuBar = ({ setActiveTab }) => {
   );
 };
 
-// Estilos para a barra do menu superior
 const styles = StyleSheet.create({
   menuBar: {
     position: 'absolute',
@@ -43,13 +42,13 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     borderRadius: 10,
     paddingHorizontal: 15,
-    elevation: 10, // Aumentado para uma sombra mais forte em Android
-    shadowColor: '#000', // Cor da sombra
-    shadowOffset: { width: 0, height: 6 }, // Deslocamento da sombra
-    shadowOpacity: 0.3, // Opacidade da sombra
-    shadowRadius: 8, // Raio da sombra
+    elevation: 10, 
+    shadowColor: '#000', 
+    shadowOffset: { width: 0, height: 6 }, 
+    shadowOpacity: 0.3, 
+    shadowRadius: 8, 
     zIndex: 1,
-    paddingTop: 20,
+    paddingTop: 40,
   },
   leftContainer: {
     flexDirection: 'row',
@@ -75,8 +74,9 @@ const styles = StyleSheet.create({
     resizeMode: 'cover',
   },
   iconContainer: {
-    marginHorizontal: 10,
+    padding: 10,  
     justifyContent: 'center',
+    alignItems: 'center', 
   },
 });
 

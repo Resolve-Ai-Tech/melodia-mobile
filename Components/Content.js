@@ -109,19 +109,20 @@ const Content = ({ activeTab }) => {
     case 'home':
     default:
       return (
-        <ScrollView contentContainerStyle={styles.scrollContainer}>
+        <ScrollView
+          contentContainerStyle={styles.scrollContainer}
+          style={styles.scrollView}
+        >
           <View style={styles.container}>
-            <Text style={styles.header}>Musicas do Balacobaco</Text>
+            <Text style={styles.header}>Musicas do Balacobaco:</Text>
             <SliderRectangular data={RECTANGULAR_DATA_1} />
-            <Text style={styles.subHeader}>Artistas mais ouvidos</Text>
+            <Text style={styles.subHeader}>Artistas mais ouvidos:</Text>
             <SliderCircular data={CIRCULAR_DATA} />
-            <Text style={styles.subHeader}>Últimas músicas ouvidas</Text>
+            <Text style={styles.subHeader}>Últimas músicas ouvidas:</Text>
             <SliderRectangular data={RECTANGULAR_DATA_2} />
-            <Text style={styles.subHeader}>Sugestões</Text>
+            <Text style={styles.subHeader}>Sugestões da IA:</Text>
             <SliderSquare data={SQUARE_DATA} />
           </View>
-          {/* o MiniPlayer  */}
-          <MiniPlayer songName="Nome da Música" artistName="Nome do Artista" />
         </ScrollView>
       );
   }
@@ -132,7 +133,7 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingHorizontal: 20,
     paddingTop: 20,
-    paddingBottom: 80, // Espaço para a barra inferior
+    paddingBottom: 140, 
   },
   header: {
     fontSize: 24,
@@ -149,6 +150,10 @@ const styles = StyleSheet.create({
   scrollContainer: {
     flexGrow: 1,
   },
+  scrollView: {
+    flex: 1,
+    paddingBottom: 80, 
+  },
   slider: {
     paddingVertical: 10,
   },
@@ -161,11 +166,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     overflow: 'hidden',
-    elevation: 5, // Sombra para Android
-    shadowColor: '#000', // Sombra para iOS
-    shadowOffset: { width: 0, height: 2 }, // Deslocamento da sombra
-    shadowOpacity: 0.1, // Opacidade da sombra
-    shadowRadius: 4, // Raio da sombra
+    elevation: 5, 
+    shadowColor: '#000', 
+    shadowOffset: { width: 0, height: 2 }, 
+    shadowOpacity: 0.1, 
+    shadowRadius: 4, 
   },
   itemCircular: {
     backgroundColor: '#f9c2ff',
@@ -176,11 +181,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     overflow: 'hidden',
-    elevation: 5, // Sombra para Android
-    shadowColor: '#000', // Sombra para iOS
-    shadowOffset: { width: 0, height: 2 }, // Deslocamento da sombra
-    shadowOpacity: 0.1, // Opacidade da sombra
-    shadowRadius: 4, // Raio da sombra
+    elevation: 5, 
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 }, 
+    shadowOpacity: 0.1,
+    shadowRadius: 4, 
   },
   itemSquare: {
     backgroundColor: '#f9c2ff',
@@ -191,11 +196,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     overflow: 'hidden',
-    elevation: 5, // Sombra para Android
-    shadowColor: '#000', // Sombra para iOS
-    shadowOffset: { width: 0, height: 2 }, // Deslocamento da sombra
-    shadowOpacity: 0.1, // Opacidade da sombra
-    shadowRadius: 4, // Raio da sombra
+    elevation: 5, 
+    shadowColor: '#000', 
+    shadowOffset: { width: 0, height: 2 }, 
+    shadowOpacity: 0.1, 
+    shadowRadius: 4, 
   },
   imageRectangular: {
     width: '100%',

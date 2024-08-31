@@ -1,105 +1,67 @@
-import React, { useState, useRef } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Image, PanResponder, Animated } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 const MiniPlayer = ({ songName, artistName }) => {
   const [isPlaying, setIsPlaying] = useState(false);
-  const pan = useRef(new Animated.ValueXY()).current;
-  const offset = useRef({ x: 0, y: 0 }).current;
 
   const handlePlayPause = () => {
     setIsPlaying(!isPlaying);
   };
 
-  const panResponder = PanResponder.create({
-    onStartShouldSetPanResponder: () => true,
-    onPanResponderGrant: () => {
-      pan.setOffset({
-        x: offset.x,
-        y: offset.y,
-      });
-      pan.setValue({ x: 0, y: 0 });
-    },
-    onPanResponderMove: Animated.event(
-      [
-        null,
-        { dx: pan.x, dy: pan.y },
-      ],
-      { useNativeDriver: false }
-    ),
-    onPanResponderRelease: (e, gestureState) => {
-      offset.x += gestureState.dx;
-      offset.y += gestureState.dy;
-    },
-  });
-
   return (
-    <Animated.View
-      style={[styles.container, { transform: [{ translateX: pan.x }, { translateY: pan.y }] }]}
-      {...panResponder.panHandlers}
-    >
-      <TouchableOpacity
-        style={styles.playPauseButton}
-        onPress={handlePlayPause}
-      >
+    <View style={styles.miniPlayer}>
+      <TouchableOpacity style={styles.playPauseButton} onPress={handlePlayPause}>
         <Icon name={isPlaying ? 'pause' : 'play'} size={24} color="#fff" />
       </TouchableOpacity>
-      <View style={styles.infoContainer}>
+      <View style={styles.songInfo}>
         <Text style={styles.songName}>{songName}</Text>
         <Text style={styles.artistName}>{artistName}</Text>
       </View>
       <TouchableOpacity style={styles.shareButton}>
         <Icon name="share" size={24} color="#fff" />
       </TouchableOpacity>
-    </Animated.View>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
+  miniPlayer: {
     position: 'absolute',
-    bottom: 20,
-    left: 10,
-    right: 10,
-    backgroundColor: '#333',
+    bottom: 55, 
+    left: '45%',
+    transform: [{ translateX: -150 }],
+    width: '85%',
+    backgroundColor: '#6a1b9a', 
     borderRadius: 10,
     padding: 10,
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between',
-    elevation: 5,
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
+    shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.3,
-    shadowRadius: 4,
+    shadowRadius: 6,
+    elevation: 5,
+    zIndex: 1000, 
   },
   playPauseButton: {
-    backgroundColor: '#555',
+    backgroundColor: '#4a0072', 
     borderRadius: 50,
     padding: 10,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  infoContainer: {
-    flex: 1,
-    marginLeft: 10,
     marginRight: 10,
+  },
+  songInfo: {
+    flex: 1,
   },
   songName: {
     color: '#fff',
-    fontSize: 16,
     fontWeight: 'bold',
   },
   artistName: {
-    color: '#aaa',
-    fontSize: 14,
+    color: '#ccc',
   },
   shareButton: {
-    backgroundColor: '#555',
-    borderRadius: 50,
-    padding: 10,
-    justifyContent: 'center',
-    alignItems: 'center',
+    marginLeft: 10,
   },
 });
 
