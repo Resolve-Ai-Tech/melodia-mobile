@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "melodia-mobile",
-    "slug": "melodia-mobile",
+    "name": "tela-de-login",
+    "slug": "snack-856901fa-48da-4696-8aad-405e9331279c",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -22,6 +22,7 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "description": "Melodia protótipo"
   }
 }
