@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "tela-de-login",
-    "slug": "snack-856901fa-48da-4696-8aad-405e9331279c",
+    "name": "tela-de-cadastro",
+    "slug": "snack-fd28cf0b-03a0-4596-a7c1-5c735af9e126",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -22,7 +22,6 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    },
-    "description": "Melodia protótipo"
+    }
   }
 }
