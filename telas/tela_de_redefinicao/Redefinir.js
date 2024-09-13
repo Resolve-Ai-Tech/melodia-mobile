@@ -12,7 +12,6 @@ import {
 
 export default function App() {
 
-  const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
 
@@ -29,24 +28,11 @@ export default function App() {
 
         <View style={styles.boxBranca}>
           <View style={styles.content}>
-            <Text style={styles.title}>Olá,</Text>
-            <Text style={styles.title}>Cadastre-se agora!</Text>
+            <Text style={styles.title}>Redefinir senha:</Text>
           </View>
 
-          {/* Usuario*/}
-          <Text style={styles.label}>Nome:</Text>
-          <TextInput
-            underlineColorAndroid="transparent"
-            placeholder='Digite seu nome'
-            value={nome}
-            onChangeText={setNome}
-            style={styles.input}
-            keyboardType="default"
-            autoCapitalize="words"
-          />
-
            {/* Email*/}         
-          <Text style={styles.label}>E-mail:</Text>
+          <Text style={styles.label}>Usuário ou E-mail:</Text>
           <TextInput
             underlineColorAndroid="transparent"
             placeholder="usuario@gmail.com"
@@ -68,14 +54,25 @@ export default function App() {
             secureTextEntry
           />
 
-          {/* Clicar para fazer o login*/}
+          {/* Redefinir Senha*/} 
+          <Text style={styles.label}>Confirmar senha:</Text>
+          <TextInput
+            underlineColorAndroid="transparent"
+            placeholder="Confirme sua senha"
+            value={senha}
+            onChangeText={setSenha}
+            style={styles.input}
+            secureTextEntry
+          />
+          
+          {/* Voltar para o inicio*/}
           <TouchableOpacity>
-            <Text style={styles.textoLogin}>Já tem conta? Clique aqui para fazer login</Text>
+            <Text style={styles.texto}>Login ou Cadastro</Text>
           </TouchableOpacity>
 
           {/* Aprendi a fazer um botão sem perder tempo*/}
           <TouchableOpacity style={styles.botao}>
-            <Text style={styles.textoBotao}>Cadastrar</Text>
+            <Text style={styles.textoBotao}>Redefinir senha</Text>
           </TouchableOpacity>
         </View>
       </ScrollView>
@@ -134,12 +131,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
     fontSize: 16,
   },
-  textoLogin: {
-    fontSize: 10,
-    marginStart:70,
+  texto: {
+    fontSize: 14,
+    marginStart:160,
     textAlign: 'center',
     color: '#5B0AC4',
-    marginBottom: 12,
+    marginBottom: 7,
   },
   botao: {
     backgroundColor: '#5B0AC4',
