@@ -14,6 +14,7 @@ export default function App() {
 
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
+  const [confirmar, setConfirmar] = useState('');
 
   return (
     <View style={styles.main}>
@@ -59,8 +60,8 @@ export default function App() {
           <TextInput
             underlineColorAndroid="transparent"
             placeholder="Confirme sua senha"
-            value={senha}
-            onChangeText={setSenha}
+            value={confirmar}
+            onChangeText={setConfirmar}
             style={styles.input}
             secureTextEntry
           />
