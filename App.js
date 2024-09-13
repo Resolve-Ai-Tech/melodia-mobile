@@ -1,6 +1,6 @@
 import React from 'react';
 import { SafeAreaView, StatusBar } from 'react-native';
-import Login from './telas/Login';
+import Login from './telas/tela_de_login/Login';
 
 export default function App(){
   return (
